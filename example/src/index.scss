@@ -12,3 +12,20 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+.page-body { 
+	width: 80%;
+	margin: 0 auto;
+}
+.hook-body { 
+	background-color: #D8232A;
+	border-radius: 5px;
+	box-sizing: border-box;
+	padding: 10px;
+
+	h2 { margin-top: 0 }
+}
+
+.body-section {
+	width: 300px;
+	display: inline-block;
+}

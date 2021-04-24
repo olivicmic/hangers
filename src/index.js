@@ -1,6 +1,4 @@
-import React from 'react'
-import styles from './styles.module.css'
+import useAPI from './useAPI';
+import useYap from './useYap';
 
-export const ExampleComponent = ({ text }) => {
-  return <div className={styles.test}>Example Component: {text}</div>
-}
+export { useAPI, useYap };
