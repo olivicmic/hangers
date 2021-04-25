@@ -34,7 +34,8 @@ export default function useAPI({
 		if (apiKey !== null && mainKey) keyObj.key = apiKey || mainKey;
 		let queryObj = { ...keyObj, ...queries };
 
-		return api({ 
+		return api({
+			data,
 			debug,
 			method,
 			route: path,
