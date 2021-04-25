@@ -11,6 +11,7 @@ export default function useAPI({
 		debug, // if true log fetched path & query object
 		filter = f => f, // pass a array filter function to the main collection
 		itemNames, // name the main collection, otherwise it is 'items'
+		method = 'get', // rest method type
 		onSuccess = () => {}, // a function that will excute after a succesful fetch
 		paused, // if true automatic fetch with be paused
 		route, // full url to fetch, will not use main env url
@@ -35,6 +36,7 @@ export default function useAPI({
 
 		return api({ 
 			debug,
+			method,
 			route: path,
 			queries: queryObj
 		})
