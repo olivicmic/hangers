@@ -6,17 +6,19 @@ import { useAPI } from 'hangers'
 const ResponseBody = ({content, status}) => {
 	if (!status) return '...';
 	else return <ul className='body-section'>
-		{ content.results ? content.results.map((item, i) => <li>
+		{ content.results ? content.results.map((item, i) => <li key={i}>
 			{ item.section }
 		</li>) : 'nothing'}
 	</ul>;	
 };
 
 export default function App(props) {
-	const { content, status } = useAPI({
-		route: 'https://api.vics.pics/v1/categories',
+	const { content, status, setStatus } = useAPI({
+		subRoute: 'categories',
 		itemNames: 'results',
-		noKey: true
+		paused: true,
+		apiKey: null,
+		debug: true
 	});
 
 	return <div className='page-body'>
@@ -28,7 +30,10 @@ export default function App(props) {
 				<p>
 					Fetches an API endpoint and returns the reponse in easily accesible state.
 				</p>
-				<button onClick={() => console.log({ hello: 'world' })}>Hey</button>
+				<button onClick={() => setStatus(0)}>Fetch</button>
+			</div>
+			<div className='body-section'>
+				Status: { status }
 			</div>
 			<ResponseBody content={content} status={status}/>
 		</div>
