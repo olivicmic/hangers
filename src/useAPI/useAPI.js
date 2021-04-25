@@ -27,7 +27,7 @@ export default function useAPI({
 	const fetch = useCallback(() => {
 		let keyObj = {};
 		let filterArr = (arr) => arr.filter(filter);
-		if (apiKey !== null) keyObj.key = apiKey || mainKey;
+		if (apiKey !== null && mainKey) keyObj.key = apiKey || mainKey;
 		let queryObj = { ...keyObj, ...queries };
 
 		if (debug) console.log(path, keyObj);
@@ -58,6 +58,11 @@ export default function useAPI({
 			fetch();}
 	},[fetch, status, watch]);
 
+	const clearState = ({ keepContent, keepError }) => {
+		if (!keepContent) setContent({ [collection]: [] });
+		if (!keepError) setError(null);
+	};
+
 	return {
 		content, // state containing results of the API response
 		setContent, // manipulate API response state directly
@@ -65,6 +70,7 @@ export default function useAPI({
 		status, // -1: paused, 0: staged (will trigger fetch), 1: processing, 2: success, 3: error
 		setStatus, // used to reset API fetched status manually
 		error, // if response returns an error it is stored here
-		setError // set the error manually
+		setError, // set the error manually
+		resetState // reset content & error state, use keepContent or keepError properties to prevent clears
 	};
 };

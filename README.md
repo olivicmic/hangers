@@ -47,6 +47,7 @@ export default function MyComponent(props) {
 - `setStatus (function)`: To manually set the status, for example to set the status to 0 `setStatus(0);` and trigger a fetch.
 - `error (state object)`: If an error occurs the content of the error will be stored here.
 - `setError (function)`: To manually set the error state use this function, such as `setError({});` to clear the error object.
+- `resetState (function)`: Use to reset the content and error state. They can be reset seperately excluded by passing `keepContent` or `keepError` via a param object like `resetState({ keepContent: true })`.
 
 
 ## License
