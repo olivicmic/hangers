@@ -1,7 +1,7 @@
 {
   "name": "hangers",
-  "version": "1.0.0",
-  "description": "A collection of React hooks.",
+  "version": "1.0.1",
+  "description": "An assortment of React hooks.",
   "author": "olivicmic",
   "license": "MIT",
   "repository": "olivicmic/hangers",
@@ -51,6 +51,6 @@
     "dist"
   ],
   "dependencies": {
-    "lal": "^4.2.2"
+    "lal": "^4.2.3"
   }
 }

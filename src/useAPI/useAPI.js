@@ -19,7 +19,7 @@ export default function useAPI({
 		watch // pass an external value to watch for updates on to trigger a fetch
 }) {
 	const collection = itemNames || 'items';
-	const path = route || subRoute ? mainURL + subRoute : '';
+	const path = route || subRoute ? mainURL ? mainURL + subRoute : '' : '';
 	const [status, setStatus] = useState(paused ? -1 : 0);
 	const [error, setError] = useState(null);
 	const [content, setContent] = useState({ [collection]: [] });
@@ -33,6 +33,7 @@ export default function useAPI({
 		if (debug) console.log(path, keyObj);
 
 		return api({ 
+			debug,
 			route: path,
 			queries: queryObj
 		})
