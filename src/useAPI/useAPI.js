@@ -13,6 +13,7 @@ export default function useAPI({
 		filter = f => f, // pass a array filter function to the main collection
 		itemNames, // name the main collection, otherwise it is 'items'
 		method = 'get', // rest method type
+		onError = () => {}, // a function that will execute if an error occurs
 		onSuccess = () => {}, // a function that will excute after a succesful request
 		paused, // if true automatic request with be paused
 		route, // full url to request, will not use main env url
@@ -33,8 +34,6 @@ export default function useAPI({
 		if (apiKey !== null && mainKey) keyObj.key = apiKey || mainKey;
 		let queryObj = { ...keyObj, ...queries };
 
-		if (debug) console.log(path, keyObj);
-
 		return api({ 
 			debug,
 			method,
@@ -42,17 +41,20 @@ export default function useAPI({
 			queries: queryObj
 		})
 		.then(response => {
-			onSuccess();		
-			setStatus(2);
-			setResponse({
+			let filtered = {
 				...response,
 				[collection]: response[collection] ? filterArr(response[collection]) : []
-			});
+			};
+			if (debug) console.log('hangers useAPI success', path, keyObj);
+			onSuccess(filtered);
+			setResponse(filtered);
+			setStatus(2);
 		})
 		.catch(errors => {
-			if (debug) console.log(errors);
-			setStatus(3);
+			if (debug) console.log('hangers useAPI error', errors);
+			onError(errors);
 			setError(errors);
+			setStatus(3);
 		});
 	},[apiKey, filter, collection, onSuccess, route, queries]);
 

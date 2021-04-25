@@ -34,7 +34,8 @@ export default function MyComponent(props) {
 - `filter (function)`:  a [array filter function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter) to apply to the main collection, for example filtering authors for a set of retrieved articles.
 - `itemNames (string)`: Designate a main collection within the response object. For example if your API includes an array named 'users' you can state so here, which enables filtering. If undefined the main collection will be named 'items'.
 - `method (string)`: rest request type, defaults to 'get'.
-- `onSuccess (function)`:  A function to run on a successful API request.
+- `onError (function)`:  A function to run when an error occurs. Recieves response error object as a callback: `const onError = (error) => console.log(error);`.
+- `onSuccess (function)`:  A function to run on a successful API request. Recieves response object as a callback: `const onSuccess = (response) => console.log(response);`.
 - `paused (boolean)`: Pause the initial automatic API request.
 - `route (string)`: Full URL of an API endpoint. The default main url enviromental variable, will not be used.
 - `subRoute (string)`: A sub-path that is appended to the default main url, for example if your main url is *https://mysite.com/api/v1/* subRoute would be something like 'articles'

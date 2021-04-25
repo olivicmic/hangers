@@ -20,7 +20,9 @@ export default function App(props) {
 		paused: true,
 		apiKey: null,
 		debug: true,
-		watch: toggle
+		watch: toggle,
+		onSuccess: (res) => console.log(res),
+		onError: (error) => console.log(error)
 	});
 
 	return <div className='page-body'>
