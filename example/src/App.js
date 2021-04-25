@@ -21,6 +21,7 @@ export default function App(props) {
 		apiKey: null,
 		debug: true,
 		watch: toggle,
+		queries: {},
 		onSuccess: (res) => console.log(res),
 		onError: (error) => console.log(error)
 	});

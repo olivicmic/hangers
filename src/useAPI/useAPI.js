@@ -51,7 +51,7 @@ export default function useAPI({
 			setStatus(2);
 		})
 		.catch(errors => {
-			if (debug) console.log('hangers useAPI error', errors);
+			if (debug) console.log('hangers useAPI error', errors, path, keyObj);
 			onError(errors);
 			setError(errors);
 			setStatus(3);
