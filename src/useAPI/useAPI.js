@@ -8,25 +8,26 @@ const {
 
 export default function useAPI({ 
 		apiKey, // if an alternative key from the env key is needed, state here
-		debug, // if true log fetched path & query object
+		data, // post/put/patch data object
+		debug, // if true log requested path & query object
 		filter = f => f, // pass a array filter function to the main collection
 		itemNames, // name the main collection, otherwise it is 'items'
 		method = 'get', // rest method type
-		onSuccess = () => {}, // a function that will excute after a succesful fetch
-		paused, // if true automatic fetch with be paused
-		route, // full url to fetch, will not use main env url
+		onSuccess = () => {}, // a function that will excute after a succesful request
+		paused, // if true automatic request with be paused
+		route, // full url to request, will not use main env url
 		subRoute, // if present, request url is prefexed with the main env url
 		queries, // an object consisting of strings to be encoded and appended to the url
-		watch // pass an external value to watch for updates on to trigger a fetch
+		watch // pass an external value to watch for updates on to trigger a request
 }) {
 	const collection = itemNames || 'items';
 	const path = route || subRoute ? mainURL ? mainURL + subRoute : '' : '';
 	const [status, setStatus] = useState(paused ? -1 : 0);
 	const [error, setError] = useState(null);
-	const [content, setContent] = useState({ [collection]: [] });
+	const [response, setResponse] = useState({ [collection]: [] });
 	const [watchStore, updateWatch] = useState(watch);
 
-	const fetch = useCallback(() => {
+	const request = useCallback(() => {
 		let keyObj = {};
 		let filterArr = (arr) => arr.filter(filter);
 		if (apiKey !== null && mainKey) keyObj.key = apiKey || mainKey;
@@ -43,7 +44,7 @@ export default function useAPI({
 		.then(response => {
 			onSuccess();		
 			setStatus(2);
-			setContent({
+			setResponse({
 				...response,
 				[collection]: response[collection] ? filterArr(response[collection]) : []
 			});
@@ -58,27 +59,27 @@ export default function useAPI({
 	useEffect(() => {
 		if (!status) {
 			setStatus(1);
-			fetch();
+			request();
 		}
 		if ((watch !== watchStore) && status > 1) {
 			updateWatch(watch);
 			setStatus(0);
 		}
-	},[fetch, status, watch, watchStore]);
+	},[request, status, watch, watchStore]);
 
 	const resetState = ({ keepContent, keepError }) => {
-		if (!keepContent) setContent({ [collection]: [] });
+		if (!keepContent) setResponse({ [collection]: [] });
 		if (!keepError) setError(null);
 	};
 
 	return {
-		content, // state containing results of the API response
-		setContent, // manipulate API response state directly
-		fetch, // function to trigger API fetch directly
-		status, // -1: paused, 0: staged (will trigger fetch), 1: processing, 2: success, 3: error
-		setStatus, // used to reset API fetched status manually
+		request, // function to trigger API request directly
+		response, // state containing results of the API response
+		setResponse, // manipulate API response state directly
+		status, // -1: paused, 0: staged (will trigger request), 1: processing, 2: success, 3: error
+		setStatus, // used to reset API request status manually
 		error, // if response returns an error it is stored here
 		setError, // set the error manually
-		resetState // reset content & error state, use keepContent or keepError properties to prevent clears
+		resetState // reset response & error state, use keepContent or keepError properties to prevent clears
 	};
 };

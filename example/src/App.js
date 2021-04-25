@@ -14,7 +14,7 @@ const ResponseBody = ({content, status}) => {
 
 export default function App(props) {
 	const [toggle, setToggle] = useState(false);
-	const { content, status, setStatus } = useAPI({
+	const { response, status, setStatus } = useAPI({
 		subRoute: 'categories',
 		itemNames: 'results',
 		paused: true,
@@ -38,7 +38,7 @@ export default function App(props) {
 			<div className='body-section'>
 				Status: { status }
 			</div>
-			<ResponseBody content={content} status={status}/>
+			<ResponseBody content={response} status={status}/>
 		</div>
 	</div>
 }
