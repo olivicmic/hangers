@@ -23,6 +23,7 @@ export default function useAPI({
 	const [status, setStatus] = useState(paused ? -1 : 0);
 	const [error, setError] = useState(null);
 	const [content, setContent] = useState({ [collection]: [] });
+	const [watchStore, updateWatch] = useState(watch);
 
 	const fetch = useCallback(() => {
 		let keyObj = {};
@@ -55,8 +56,13 @@ export default function useAPI({
 	useEffect(() => {
 		if (!status) {
 			setStatus(1);
-			fetch();}
-	},[fetch, status, watch]);
+			fetch();
+		}
+		if ((watch !== watchStore) && status > 1) {
+			updateWatch(watch);
+			setStatus(0);
+		}
+	},[fetch, status, watch, watchStore]);
 
 	const resetState = ({ keepContent, keepError }) => {
 		if (!keepContent) setContent({ [collection]: [] });

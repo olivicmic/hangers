@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useAPI } from 'hangers'
 //import 'hangers/dist/index.css'
 //
@@ -13,12 +13,14 @@ const ResponseBody = ({content, status}) => {
 };
 
 export default function App(props) {
+	const [toggle, setToggle] = useState(false);
 	const { content, status, setStatus } = useAPI({
 		subRoute: 'categories',
 		itemNames: 'results',
 		paused: true,
 		apiKey: null,
-		debug: true
+		debug: true,
+		watch: toggle
 	});
 
 	return <div className='page-body'>
@@ -31,6 +33,7 @@ export default function App(props) {
 					Fetches an API endpoint and returns the reponse in easily accesible state.
 				</p>
 				<button onClick={() => setStatus(0)}>Fetch</button>
+				<button onClick={() => setToggle(true)}>Trigger watch change</button>
 			</div>
 			<div className='body-section'>
 				Status: { status }
