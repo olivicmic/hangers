@@ -58,7 +58,7 @@ export default function useAPI({
 			fetch();}
 	},[fetch, status, watch]);
 
-	const clearState = ({ keepContent, keepError }) => {
+	const resetState = ({ keepContent, keepError }) => {
 		if (!keepContent) setContent({ [collection]: [] });
 		if (!keepError) setError(null);
 	};
