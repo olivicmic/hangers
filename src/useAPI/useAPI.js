@@ -25,7 +25,7 @@ export default function useAPI({
 	const path = route || subRoute ? mainURL ? mainURL + subRoute : '' : '';
 	const [status, setStatus] = useState(paused ? -1 : 0);
 	const [error, setError] = useState(null);
-	const [response, setResponse] = useState({ [collection]: [] });
+	const [response, setResponse] = useState(null);
 	const [watchStore, updateWatch] = useState(watch);
 
 	const request = useCallback(() => {
