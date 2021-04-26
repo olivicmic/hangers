@@ -8,6 +8,7 @@ const {
 
 export default function useAPI({ 
 		apiKey, // if an alternative key from the env key is needed, state here
+		auth, // jwt auth access token
 		data, // post/put/patch data object
 		debug, // if true log requested path & query object
 		filter = f => f, // pass a array filter function to the main collection
@@ -35,6 +36,7 @@ export default function useAPI({
 		let queryObj = { ...keyObj, ...queries };
 
 		return api({
+			auth,
 			data,
 			debug,
 			method,
