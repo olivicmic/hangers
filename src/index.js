@@ -1,4 +1,6 @@
-import useAPI from './useAPI';
+import useRelay from './useRelay';
+import useRequest from './useRequest';
+import useTimeout from './useTimeout';
 import useYap from './useYap';
 
-export { useAPI, useYap };
+export { useRelay, useRequest, useTimeout, useYap };

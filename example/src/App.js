@@ -1,12 +1,9 @@
 import React, { useState } from 'react'
-import { useAPI } from 'hangers'
-//import 'hangers/dist/index.css'
-//
+import { useRelay } from 'hangers'
+import Request from './components/Request';
 
-const ResponseBody = ({content, status}) => {
-	if (!status) return '...';
-	else return <ul className='body-section'>
-		{ content.results ? content.results.map((item, i) => <li key={i}>
+const ResponseBody = ({content}) => {return <ul className='body-section'>
+		{ content && content.results ? content.results.map((item, i) => <li key={i}>
 			{ item.section }
 		</li>) : 'nothing'}
 	</ul>;	
@@ -14,16 +11,17 @@ const ResponseBody = ({content, status}) => {
 
 export default function App(props) {
 	const [toggle, setToggle] = useState(false);
-	const { response, status, setStatus } = useAPI({
-		subRoute: 'categories',
+	const { response, status, setStatus } = useRelay({
+		url: 'categories',
 		itemNames: 'results',
 		paused: true,
 		apiKey: null,
 		debug: true,
 		watch: toggle,
 		queries: {},
-		onSuccess: (res) => console.log(res),
-		onError: (error) => console.log(error)
+		delay: 3000,
+		onSuccess: (res) => console.log('😎 GOOD', res),
+		onError: (error) => console.log('😩 BAD', error)
 	});
 
 	return <div className='page-body'>
@@ -31,7 +29,7 @@ export default function App(props) {
 		<span>a collection of react hooks</span>
 		<div className='hook-body'>
 			<div className='body-section'>
-				<h2>useAPI</h2>
+				<h2>useRelay</h2>
 				<p>
 					Fetches an API endpoint and returns the reponse in easily accesible state.
 				</p>
@@ -43,5 +41,6 @@ export default function App(props) {
 			</div>
 			<ResponseBody content={response} status={status}/>
 		</div>
+		<Request />
 	</div>
 }
