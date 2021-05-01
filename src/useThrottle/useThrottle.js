@@ -4,8 +4,8 @@ export default function useThrottle(toDo, status, setStatus, watch, delay = 0, d
 	const [watchStore, updateWatch] = useState(watch);
 
 	useEffect(() => {
-		if (debug) console.log('hangers useThrottle');
 		const timer = setTimeout(() => {
+			if (debug) console.log('hangers useThrottle timer');
 			if (!status) {
 				if (debug) console.log('useThrottle switch');
 				setStatus(1);
