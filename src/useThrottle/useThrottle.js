@@ -12,15 +12,16 @@ export default function useThrottle(toDo, status, setStatus, watch, delay = 0, d
 				toDo();
 			}
 		}, delay);
+	return () => clearTimeout(timer);
+	},[delay, toDo, status]);
 
+	useEffect(() => {
 		if ((watch !== watchStore) && status > 1) {
 			if (debug) console.log('useThrottle watch trigger');
 			updateWatch(watch);
 			setStatus(0);
 		}
-
-	return () => clearTimeout(timer);
-	},[delay, toDo, status, watch, watchStore]);
+	},[status, watch, watchStore]);
 
 	return { watchStore, updateWatch };
 };
