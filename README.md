@@ -47,6 +47,7 @@ const { response, status } = useRelay('articles');
 
 
 #### Returned
+- `hold (boolean)`: If a request is not being processed (paused, successful, or error) then this will be false.
 - `status (number -1 to 3)`: If this equals -1 the status is paused, if 0 it is staged and will trigger an automatic request, 1 means the request is in progress, 2 if the request was successful, and 3 if there was an error.
 - `setStatus (function)`: To manually set the status, for example to set the status to 0 `setStatus(0);` and trigger a request.
 

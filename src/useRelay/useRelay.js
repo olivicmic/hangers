@@ -20,6 +20,7 @@ export default function useRelay(props) {
 	const { watchStore, updateWatch } = useThrottle(request, status, setStatus, watch, delay, debug);
 
 	return {
+		hold: !status || status === 1,
 		request, // function to trigger API request directly
 		status, // -1: paused, 0: staged (will trigger request), 1: processing, 2: success, 3: error
 		setStatus, // used to reset API request status manually

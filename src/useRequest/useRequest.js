@@ -20,7 +20,7 @@ export default function useRequest(props) {
 	const request = useCallback(() => api({
 		baseURL: baseURL || mainURL,
 		debug,
-		onError: (err) => execute(err, setResponse, onError, 3, 'error'),
+		onError: (err) => execute(err, setError, onError, 3, 'error'),
 		onSuccess: (res) => execute(res, setResponse, onSuccess, 2, 'success'),
 		params: queryObj,
 		url: mono || url,
