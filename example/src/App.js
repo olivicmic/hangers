@@ -12,6 +12,8 @@ const ResponseBody = ({content}) => {return <ul className='body-section'>
 export default function App(props) {
 	const [toggle, setToggle] = useState(false);
 	const { response, status, setStatus } = useRelay({
+		baseState: { a: 'hello', b: 'world', c: ''},
+		delay: 3000,
 		url: 'categories',
 		itemNames: 'results',
 		paused: true,
@@ -19,7 +21,6 @@ export default function App(props) {
 		debug: true,
 		watch: toggle,
 		queries: {},
-		delay: 3000,
 		onSuccess: (res) => console.log('😎 GOOD', res),
 		onError: (error) => console.log('😩 BAD', error)
 	});
