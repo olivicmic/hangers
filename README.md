@@ -41,10 +41,11 @@ const { response, status } = useRelay('articles');
 ```
 
 #### Parameters
-- `delay (number)`: Delay before executing request in miliseconds.
-- `paused (boolean)`: Pause the initial automatic API request.
-- `watch (any)`: If value changes, trigger a request.
-
+- `delay (number, default 0)`: Delay before executing request in miliseconds.
+- `paused (boolean, default undefined)`: Pause the initial automatic API request.
+- `retry (boolean, default undefined)`: If true another request attempt will be made when an error occurs.
+- `slowOnError (boolean, default undefined)`: If true the delay will be applied to fetches made after an error response
+- `watch (any, default undefined)`: If value changes, trigger a request.
 
 #### Returned
 - `hold (boolean)`: If a request is not being processed (paused, successful, or error) then this will be false.

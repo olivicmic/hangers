@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 
-export default function useThrottle(toDo, status, setStatus, watch, delay = 0, debug) {
+export default function useThrottle(toDo, status, setStatus, watch, delay = 0, debug, holdDelay = false) {
+	//const [delayed, updateWatch] = useState(watch);
 	const [watchStore, updateWatch] = useState(watch);
 
 	useEffect(() => {
@@ -11,7 +12,7 @@ export default function useThrottle(toDo, status, setStatus, watch, delay = 0, d
 				setStatus(1);
 				toDo();
 			}
-		}, delay);
+		}, holdDelay ? 0 : delay);
 	return () => clearTimeout(timer);
 	},[status]);
 

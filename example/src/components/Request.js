@@ -10,8 +10,8 @@ const ResponseBody = ({content}) => {return <ul className='body-section'>
 };
 
 export default function Request(props) {
-	const { response, request } = useRequest('categories');
-	if (!response) request();
+	const { response, request, error } = useRequest('categories');
+	if (!response && !error) request();
 
 	return (<div className='hook-body'>
 		<div className='body-section'>

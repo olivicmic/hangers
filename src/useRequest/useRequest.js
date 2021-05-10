@@ -11,17 +11,18 @@ export default function useRequest(props) {
 		if (!keepContent) setResponse(null);
 		if (!keepError) setError(null);
 	};
-	const execute = (res, updateState, onFinish, step, passFail) => {
+	const execute = (res, updateState, onFinish, clear, passFail) => {
 		if (debug) console.log('hangers useAPI', passFail, res, /*queryObj */);
 		updateState(res);
+		clear(null);
 		onFinish(res);
 	};
 	const queryObj = { apiKey: apiKey !== undefined ? apiKey : mainKey, ...params };
 	const request = useCallback(() => api({
 		baseURL: baseURL || mainURL,
 		debug,
-		onError: (err) => execute(err, setError, onError, 3, 'error'),
-		onSuccess: (res) => execute(res, setResponse, onSuccess, 2, 'success'),
+		onError: (err) => execute(err, setError, onError, setResponse, 'error'),
+		onSuccess: (res) => execute(res, setResponse, onSuccess, setError, 'success'),
 		params: queryObj,
 		url: mono || url,
 		...rest
