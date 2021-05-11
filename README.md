@@ -25,13 +25,13 @@ See useRequest for further details.
 
 ```jsx
 const { response: articleContent, status } = useRelay({
-	url: 'articles',
+  url: 'articles',
 });
 
 return (
-	<div>
-		{ articleContent ? articleContent.title : '...'}
-	</div>
+  <div>
+    { articleContent ? articleContent.title : '...'}
+  </div>
 );
 
 /* or shorthand */
@@ -64,15 +64,15 @@ Beyond what is detailed here, requests can be futher configured with standard [A
 
 ```jsx
 const { request, response } = useRequest({
-	url: 'users',
-	onSucess: (res) => console.log('Done!', res);
-	params: { page }
+  url: 'users',
+  onSucess: (res) => console.log('Done!', res);
+  params: { page }
 });
 
 return (
-	<div>
-		{ response ? response.items : '...'}
-	</div>
+  <div>
+    { response ? response.items : '...'}
+  </div>
 );
 
 /* or shorthand */
