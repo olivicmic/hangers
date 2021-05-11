@@ -5,10 +5,11 @@ const { REACT_APP_API_MAIN_KEY: mainKey, REACT_APP_API_MAIN_URL: mainURL } = pro
 
 export default function useRequest(props) {
 	const { apiKey, baseURL, debug, baseState, onError = () => {}, onSuccess = () => {}, params, mono, url, ...rest } = uno(props);
-	const [error, setError] = useState(null);
+	const stateDefault = baseState && baseState.basePesist ? baseState : null;
+	const [error, setError] = useState(stateDefault);
 	const [response, setResponse] = useState(null);
 	const resetState = ({ keepContent, keepError }) => {
-		if (!keepContent) setResponse(null);
+		if (!keepContent) setResponse(stateDefault);
 		if (!keepError) setError(null);
 	};
 	const resArr = ['error','success'];
@@ -16,7 +17,7 @@ export default function useRequest(props) {
 		let resObj = pass ? { ...baseState, ...res } : res;
 		if (debug) console.log('hangers useAPI', resArr[pass], resObj);
 		updateState(resObj);
-		clear(null);
+		clear(pass ? null : stateDefault);
 		onFinish(resObj);
 	};
 	const queryObj = { apiKey: apiKey !== undefined ? apiKey : mainKey, ...params };

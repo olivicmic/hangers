@@ -84,7 +84,7 @@ const { request, response } = useRequest('users');
 #### Parameters
 - `apiKey (string or null)`: an api key to overide the default api key, or set to null to use no key.
 - `auth (string)`: JWT access token.
-- `baseState (object)`: base values to populate the response state.
+- `baseState (object)`: base values to populate the response state. If baseState.basePesist is true then the these base values will remain if a failed second request or reset occurs. 
 - `debug (boolean)`: if true the fetched URL and query object (with includes an API key) will be console logged.
 - `filter (function)`:  a [array filter function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter) to apply to the main collection, for example filtering authors for a set of retrieved articles.
 - `itemNames (string)`: Designate a main collection within the response object. For example if your API includes an array named 'users' you can state so here, which enables filtering. If undefined the main collection will be named 'items'.

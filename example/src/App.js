@@ -12,7 +12,7 @@ const ResponseBody = ({content}) => {return <ul className='body-section'>
 export default function App(props) {
 	const [toggle, setToggle] = useState(false);
 	const { response, status, setStatus } = useRelay({
-		baseState: { a: 'hello', b: 'world', c: ''},
+		baseState: { a: 'hello', b: 'world', c: '', persist: true },
 		delay: 3000,
 		url: 'categories',
 		itemNames: 'results',
