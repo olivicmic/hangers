@@ -1,5 +1,5 @@
 import { useCallback, useState } from 'react';
-import { api, uno } from 'lal';
+import { api, log, uno } from 'lal';
 
 const { REACT_APP_API_MAIN_KEY: mainKey, REACT_APP_API_MAIN_URL: mainURL } = process.env;
 
@@ -29,7 +29,10 @@ export default function useRequest(props) {
 		params: queryObj,
 		url: mono || url,
 		...rest
-	}));
+	})
+	.then(res => log(...[], { hangersDebug: 'success', res }, res.debug))
+	.catch(err => log(...[], { hangersDebug: 'error', err }, err.debug))
+	);
 
 	return { request, response, setResponse, error, setError, resetState };
 };

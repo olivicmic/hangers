@@ -3323,7 +3323,7 @@ chownr@^2.0.0:
   resolved "https://registry.yarnpkg.com/chownr/-/chownr-2.0.0.tgz#15bfbe53d2eab4cf70f18a8cd68ebe5b3cb1dece"
   integrity sha512-bIomtDF5KGpdogkLd9VspvFzk9KfpyyGlS8YFVZl7TGPBHL5snIOnxeshwVgPteQ9b4Eydl+pVbIyE1DcvCWgQ==
 
-chroma-js@^2.1.0:
+chroma-js@^2.1.1:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/chroma-js/-/chroma-js-2.1.1.tgz#413c8fbcc4c0988dc7c77bb59c4de36573b8fe97"
   integrity sha512-gYc5/Dooshun2OikK7oY/hYnoEiZ0dxqRpXosEdYRYm505vU5mRsHFqIW062C9nMtr32DVErP6mlxuepo2kNkw==
@@ -7116,13 +7116,13 @@ klona@^2.0.4:
   resolved "https://registry.yarnpkg.com/klona/-/klona-2.0.4.tgz#7bb1e3affb0cb8624547ef7e8f6708ea2e39dfc0"
   integrity sha512-ZRbnvdg/NxqzC7L9Uyqzf4psi1OM4Cuc+sJAkQPjO6XkQIJTNbfK2Rsmbw8fx1p2mkZdp2FZYo2+LwXYY/uwIA==
 
-lal@^5.3.3:
-  version "5.3.5"
-  resolved "https://registry.yarnpkg.com/lal/-/lal-5.3.5.tgz#b3d72a6d980a749e03e2a828dfe95fbaa86fa84f"
-  integrity sha512-0N08a+A1bs4wo6mD58GADHq28Datr8ZEOi3h1FAyBYGopVMxeunGOw9OUDb34c2NfDNFBUoqLiVYJ0IMMi2xuw==
+lal@^5.3.9:
+  version "5.3.9"
+  resolved "https://registry.yarnpkg.com/lal/-/lal-5.3.9.tgz#739a3ec24d153842e224472afe66a2aae9be82ac"
+  integrity sha512-fV7FT0FLrCNBqC5pTEChVJfXB1wiKkgB/5LYT33yRroW5MdhuKQXmnM3OZyrUOELvz4QJsQ14FCmzVtooFIQpg==
   dependencies:
     axios "^0.21.1"
-    chroma-js "^2.1.0"
+    chroma-js "^2.1.1"
     hex-color-regex "^1.1.0"
 
 language-subtag-registry@~0.3.2:
