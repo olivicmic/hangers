@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-export default function useThrottle(toDo, status, setStatus, watch, delay = 0, debug, holdDelay = false) {
+export default function useThrottle(toDo = () => {}, status, setStatus, watch, delay = 0, debug, holdDelay = false) {
 	const [watchStore, updateWatch] = useState(watch);
 
 	useEffect(() => {
