@@ -30,8 +30,8 @@ export default function useRequest(props) {
 		url: mono || url,
 		...rest
 	})
-	.then(res => log(...[], { hangersDebug: 'success', res }, res.debug))
-	.catch(err => log(...[], { hangersDebug: 'error', err }, err.debug))
+	.then(res => log(undefined, { hangersDebug: 'success', res }, res.debug))
+	.catch(err => log(undefined, { hangersDebug: 'error', err }, err.debug))
 	);
 
 	return { request, response, setResponse, error, setError, resetState };
