@@ -9,13 +9,14 @@ export default function useRequest(props) {
 	const [error, setError] = useState(null);
 	const [response, setResponse] = useState(stateDefault);
 	const resetState = ({ keepContent, keepError }) => {
+		if (debug) console.debug('hangers debug reset state, baseState:', baseState);
 		if (!keepContent) setResponse(stateDefault);
 		if (!keepError) setError(null);
 	};
 	const resArr = ['error','success'];
 	const execute = (res, updateState, onFinish, clear, pass) => {
 		let resObj = pass ? { ...baseState, ...res } : res;
-		if (debug) console.log('hangers useAPI', resArr[pass], resObj);
+		if (debug) console.debug('hangers useAPI', resArr[pass], resObj);
 		updateState(resObj);
 		clear(pass ? null : stateDefault);
 		onFinish(resObj);
