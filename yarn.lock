@@ -7116,10 +7116,10 @@ klona@^2.0.4:
   resolved "https://registry.yarnpkg.com/klona/-/klona-2.0.4.tgz#7bb1e3affb0cb8624547ef7e8f6708ea2e39dfc0"
   integrity sha512-ZRbnvdg/NxqzC7L9Uyqzf4psi1OM4Cuc+sJAkQPjO6XkQIJTNbfK2Rsmbw8fx1p2mkZdp2FZYo2+LwXYY/uwIA==
 
-lal@^5.3.9:
-  version "5.3.9"
-  resolved "https://registry.yarnpkg.com/lal/-/lal-5.3.9.tgz#739a3ec24d153842e224472afe66a2aae9be82ac"
-  integrity sha512-fV7FT0FLrCNBqC5pTEChVJfXB1wiKkgB/5LYT33yRroW5MdhuKQXmnM3OZyrUOELvz4QJsQ14FCmzVtooFIQpg==
+lal@^5.3.10:
+  version "5.3.10"
+  resolved "https://registry.yarnpkg.com/lal/-/lal-5.3.10.tgz#bc09e91381c9086af1fa976ef7d8457ff4afd7eb"
+  integrity sha512-mcWEQe1C+qflblfHLY6n74vLFrxrAqB/DJU7lXsyXD6aTc4Xy6GViV0484R6TmY/hCLZzdKi43+WgkpvrvdyTg==
   dependencies:
     axios "^0.21.1"
     chroma-js "^2.1.1"

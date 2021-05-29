@@ -50,6 +50,6 @@
     "dist"
   ],
   "dependencies": {
-    "lal": "^5.3.9"
+    "lal": "^5.3.10"
   }
 }
