@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-export default function useThrottle(toDo = () => {}, status, setStatus, watch, delay = 0, debug, holdDelay = false) {
+export default function useThrottle(toDo = () => {}, status, setStatus, watch, delay = 0, debug, holdDelay = false, url) {
 	const [watchStore, updateWatch] = useState(watch);
 
 	useEffect(() => {
@@ -16,12 +16,12 @@ export default function useThrottle(toDo = () => {}, status, setStatus, watch, d
 	},[status]);
 
 	useEffect(() => {
-		if (watch && (watch !== watchStore) && status !== 1) {
-			if (debug) console.debug('useThrottle watch trigger', watch, watchStore);
-			updateWatch(watch);
+		if (debug) console.debug('useThrottle watch values', watch, watchStore);
+		if (url && watch && status !== 1) {
+			if (debug) console.debug('useThrottle watch triggered', watch, watchStore);
 			setStatus(0);
 		}
-	},[status, watch, watchStore]);
+	},[status, url, watch]);
 
 	return { watchStore, updateWatch };
 };

@@ -17,7 +17,7 @@ export default function useRelay(props) {
 		url: mono || url,
 		...rest
 	});
-	const { watchStore, updateWatch } = useThrottle(request, status, setStatus, watch, delay, debug, slowOnError && !error);
+	const { watchStore, updateWatch } = useThrottle(request, status, setStatus, watch, delay, debug, slowOnError && !error, mono || url);
 
 	return {
 		hold: !status || status === 1,
