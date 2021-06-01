@@ -17,7 +17,7 @@ export default function useThrottle(toDo = () => {}, status, setStatus, watch, d
 
 	useEffect(() => {
 		if (watch && (watch !== watchStore) && status !== 1) {
-			if (debug) console.log('useThrottle watch trigger');
+			if (debug) console.debug('useThrottle watch trigger', watch, watchStore);
 			updateWatch(watch);
 			setStatus(0);
 		}
