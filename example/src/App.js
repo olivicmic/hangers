@@ -14,16 +14,25 @@ export default function App(props) {
 	const { response, status, setStatus } = useRelay({
 		baseState: { a: 'hello', b: 'world', c: '', persist: true },
 		delay: 3000,
-		url: 'categories',
+		//url: 'categories',
 		itemNames: 'results',
+		keyName: 'key',
 		paused: true,
-		apiKey: null,
+		//apiKey: null,
 		debug: true,
 		watch: toggle,
 		queries: {},
 		onSuccess: (res) => console.log('😎 GOOD', res),
 		onError: (error) => console.log('😩 BAD', error)
 	});
+
+	const explainStatus = (value) => {switch (value) {
+		default: return 'error';
+		case -1: return 'paused';
+		case 0: return 'staged';
+		case 1: return 'in progress';
+		case 2: return 'success';
+	}};
 
 	return <div className='page-body'>
 		<h1>hangers</h1>
@@ -38,7 +47,7 @@ export default function App(props) {
 				<button onClick={() => setToggle(true)}>Trigger watch change</button>
 			</div>
 			<div className='body-section'>
-				Status: { status }
+				Status: { status + ' Description: ' + explainStatus(status) }
 			</div>
 			<ResponseBody content={response} status={status}/>
 		</div>

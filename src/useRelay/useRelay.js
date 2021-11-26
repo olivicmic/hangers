@@ -5,6 +5,7 @@ import useThrottle from '../useThrottle';
 
 export default function useRelay(props) {
 	const { debug, delay, onError = () => {}, onSuccess = () => {}, paused, mono, retry, slowOnError, url, watch, ...rest  } = uno(props);
+	console.log(rest);
 	const [status, setStatus] = useState(paused ? -1 : 0);
 	const execute = (res, step, onFinish) => {
 		onFinish(res);
