@@ -88,6 +88,8 @@ const { request, response } = useRequest('users');
 - `debug (boolean)`: if true the fetched URL and query object (with includes an API key) will be console logged.
 - `filter (function)`:  a [array filter function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter) to apply to the main collection, for example filtering authors for a set of retrieved articles.
 - `itemNames (string)`: Designate a main collection within the response object. For example if your API includes an array named 'users' you can state so here, which enables filtering. If undefined the main collection will be named 'items'.
+- `keyName (string)`: rename the apiKey param key. For example from `apiKey=abc123` to `myValue=abc123`.
+- `params (object)`: Key/value pairs within this object will be converted to a param string which is appended to requested URL, following an API key if present.
 - `onError (function)`:  A function to run when an error occurs. Recieves response error object as a callback: `const onError = (error) => console.log(error);`.
 - `onSuccess (function)`:  A function to run on a successful API request. Recieves response object as a callback: `const onSuccess = (response) => console.log(response);`.
 
