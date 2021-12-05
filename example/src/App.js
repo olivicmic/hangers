@@ -14,14 +14,14 @@ export default function App(props) {
 	const { response, status, setStatus } = useRelay({
 		baseState: { a: 'hello', b: 'world', c: '', persist: true },
 		delay: 3000,
-		//url: 'categories',
-		itemNames: 'results',
+		url: 'v1/resources/test-collection',
+		itemNames: 'characters',
 		keyName: 'key',
 		paused: true,
 		//apiKey: null,
 		debug: true,
 		watch: toggle,
-		queries: {},
+		objectify: true,
 		onSuccess: (res) => console.log('😎 GOOD', res),
 		onError: (error) => console.log('😩 BAD', error)
 	});

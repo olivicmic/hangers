@@ -1,6 +1,6 @@
 {
   "name": "hangers",
-  "version": "2.6.1",
+  "version": "2.7.0",
   "description": "An assortment of React hooks.",
   "author": "olivicmic",
   "license": "MIT",
@@ -51,6 +51,6 @@
   ],
   "dependencies": {
     "caniuse-lite": "^1.0.30001283",
-    "lal": "^5.3.10"
+    "lal": "^5.4.1"
   }
 }
