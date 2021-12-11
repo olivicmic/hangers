@@ -17,7 +17,7 @@ An extension of useRequest, this hook with minimal configuration alongside stand
 
 A successful request is stored in the `response` state, or in `error` if otberwise. Corresponding functions to run at completion can be passed via `onSuccess` and `onError` params, while `filter` can be used alongside `itemNames` to filter a primary array in the response.
 
-Default API keys and base URLs can be set as the enviromental variables REACT_APP_API_MAIN_KEY and REACT_APP_API_MAIN_URL
+Default API keys and base URLs can be set as the enviroment variables REACT_APP_API_MAIN_KEY and REACT_APP_API_MAIN_URL
 
 See useRequest for further details.
 
@@ -82,13 +82,13 @@ const { request, response } = useRequest('users');
 ```
 
 #### Parameters
-- `apiKey (string or null)`: an api key to overide the default api key, or set to null to use no key.
+- `apiKey or key (string or null)`: an api key to overide the default api key, or set to null to use no key.
 - `auth (string)`: JWT access token.
 - `baseState (object)`: base values to populate the response state. If baseState.basePesist is true then the these base values will remain if a failed second request or reset occurs. 
 - `debug (boolean)`: if true the fetched URL and query object (with includes an API key) will be console logged.
 - `filter (function)`:  a [array filter function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter) to apply to the main collection, for example filtering authors for a set of retrieved articles.
 - `itemNames (string)`: Designate a main collection within the response object. For example if your API includes an array named 'users' you can state so here, which enables filtering. If undefined the main collection will be named 'items'.
-- `keyName (string)`: rename the apiKey param key. For example from `apiKey=abc123` to `myValue=abc123`.
+- `keyName (string)`: rename the apiKey param key. For example from `apiKey=abc123` to `myValue=abc123`, or use the enviroment variable `REACT_APP_API_MAIN_URL`.
 - `params (object)`: Key/value pairs within this object will be converted to a param string which is appended to requested URL, following an API key if present.
 - `onError (function)`:  A function to run when an error occurs. Recieves response error object as a callback: `const onError = (error) => console.log(error);`.
 - `onSuccess (function)`:  A function to run on a successful API request. Recieves response object as a callback: `const onSuccess = (response) => console.log(response);`.
