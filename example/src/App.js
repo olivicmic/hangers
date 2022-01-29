@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useRelay } from 'hangers'
+import { usePagination, useRelay } from 'hangers'
 import Request from './components/Request';
 
 const ResponseBody = ({content}) => {return <ul className='body-section'>
@@ -10,6 +10,7 @@ const ResponseBody = ({content}) => {return <ul className='body-section'>
 };
 
 export default function App(props) {
+	const [reqPg, setReqPg] = useState(1);
 	const [toggle, setToggle] = useState(false);
 	const { response, status, setStatus } = useRelay({
 		baseState: { a: 'hello', b: 'world', c: '', persist: true },
@@ -25,6 +26,7 @@ export default function App(props) {
 		onSuccess: (res) => console.log('😎 GOOD', res),
 		onError: (error) => console.log('😩 BAD', error)
 	});
+	const pgn = usePagination({ count: 99 })
 
 	const explainStatus = (value) => {switch (value) {
 		default: return 'error';
@@ -41,7 +43,7 @@ export default function App(props) {
 			<div className='body-section'>
 				<h2>useRelay</h2>
 				<p>
-					Fetches an API endpoint and returns the reponse in easily accesible state.
+					Attaches a status to REST requests, allowing for tracking or manual throttling through 'paused', 'staged/ready', 'in progress', 'success' and 'error' states
 				</p>
 				<button onClick={() => setStatus(0)}>Fetch</button>
 				<button onClick={() => setToggle(true)}>Trigger watch change</button>
@@ -52,5 +54,24 @@ export default function App(props) {
 			<ResponseBody content={response} status={status}/>
 		</div>
 		<Request />
+		<div className='hook-body'>
+			<div className='body-section'>			
+				<h2>usePagination</h2>
+				<p>
+					Recieves a number of pages and provides values and functions to navigate within them.
+				</p>
+				<div>
+					<button onClick={pgn.back} disabled={pgn.atStart}>Back</button>
+					<button onClick={pgn.forward} disabled={pgn.atEnd}>Forward</button>
+					<div>
+						<input type='number' value={reqPg} onChange={e => setReqPg(e.target.value)} />
+						<button onClick={() => pgn.goTo(reqPg - 1)} disabled={reqPg < 1 || reqPg > pgn.count}>Go to page</button>
+					</div>
+				</div>			
+				<div>
+					Page: { pgn.page + 1 } of { pgn.count }
+				</div>
+			</div>
+		</div>
 	</div>
 }

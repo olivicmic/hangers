@@ -11,6 +11,66 @@ npm i hangers -s
 
 ## Hooks
 
+### useBusy
+
+This hook extends [react-spring ](https://react-spring.io) with a "busy" boolean that is true while a spring is animating.
+
+#### Usage 
+
+```jsx
+const [busy, busyConfig] = useBusy({ onStart: yourFunction }); // because useBusy utilizes react-spring onStart/onRest params, you can pass through your own here. 
+
+const transitions = useSpring(value, {
+  ...yourSpringParams,
+  ...busyConfig // adds onStart and onRest
+});
+
+```
+
+### usePagination
+
+Recieves a number, typically the length of an array of pages, and returns values and functions to navigate within that number range.
+
+#### Usage
+
+```jsx
+const { atEnd, atStart, back, count, forward, goTo, page } = useRelay({
+  count: 371,
+});
+
+return (
+  <div>
+    <div>
+      <button onClick={back} disabled={atStart}>Back</button>
+      <button onClick={forward} disabled={atEnd}>Forward</button>
+    <div>
+      <input type='number' value={reqPg} onChange={e => setReqPg(e.target.value)} />
+      <button onClick={() => goTo(reqPg - 1)} disabled={reqPg < 1 || reqPg > count}>Go to page</button>
+    </div>
+    <div>
+      Page: { page + 1 } of { count }
+    </div>
+  </div>
+);
+
+```
+
+#### Parameters
+- `count (number, default 0)`: How many pages you want to navigate through.
+- `initial (number, default 0)`: Set an initial first page.
+- `onChange (function)`: A function to run when a page change occurs.
+
+#### Returned
+- `active (boolean)`: True if a page change has occured.
+- `atEnd (boolean)`: True if at the last page.
+- `atStart (boolean)`: True if at the first page.
+- `back (function)`: will go to the previous page (if above -1).
+- `count (number)`: The count number provided above.
+- `direction (number, 0 or 1)`: The current direction (0 = back/left 1 = forward/right), set on page changes.
+- `forward (function)`: will go to the next page (if below count).
+- `goTo (function)`: will go to a page provided a parameter `goto(123)` if the number is within the count range.
+- `page (number)`: The current page number.
+
 ### useRelay
 
 An extension of useRequest, this hook with minimal configuration alongside standard [Axios](https://github.com/axios/axios) parameters, will request an API endpoint and store it in easily accessible and manipulated state. As the request progresses, a numeric status value is updated, from 0 for staged, 1 for in-progress, 2 for successful, 3 for error. The default 0 will make an automatic request unless the `paused` option is set to true. While paused the status is -1 so using the provided function `setStatus(0)` could be used to conditionally make a request. This can be coupled with the option `delay: 3000` to do something like timed conditional auto-saves. Or you can trigger requests when a value changes using the `watch` param.
