@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { usePagination, useRelay } from 'hangers'
+import { usePagination, useRelay, useStateRef } from 'hangers'
 import Request from './components/Request';
 
 const ResponseBody = ({content}) => {return <ul className='body-section'>
@@ -26,7 +26,8 @@ export default function App(props) {
 		onSuccess: (res) => console.log('😎 GOOD', res),
 		onError: (error) => console.log('😩 BAD', error)
 	});
-	const pgn = usePagination({ count: 99 })
+	const pgn = usePagination({ count: 99 });
+	const [clientHeight, setRef] = useStateRef(node => (node?.clientHeight || 0));
 
 	const explainStatus = (value) => {switch (value) {
 		default: return 'error';
@@ -70,6 +71,17 @@ export default function App(props) {
 				</div>			
 				<div>
 					Page: { pgn.page + 1 } of { pgn.count }
+				</div>
+			</div>
+		</div>
+		<div className='hook-body' ref={setRef}>
+			<div className='body-section'>			
+				<h2>useStateRef</h2>
+				<p>
+					Provides a ref then stores it in state when the target component renders.
+				</p>
+				<div>
+					This box is {clientHeight} pixels tall (via ref).
 				</div>
 			</div>
 		</div>

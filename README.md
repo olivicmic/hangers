@@ -71,6 +71,27 @@ return (
 - `goTo (function)`: will go to a page provided a parameter `goto(123)` if the number is within the count range.
 - `page (number)`: The current page number.
 
+### useRefState
+
+Provides a ref which will be stored in state when the target component renders. A function can be provided to the hook which can transform/isolate the ref before it is stored.
+
+#### Usage
+
+```jsx
+const [clientHeight, setRef] = useStateRef(node => (node?.clientHeight || 0));
+
+
+// here the component height only is stored in state
+
+```
+
+#### Parameter
+- `function`: This function recieves the target node ref as a callback, which can be manipulated (or not) and whatever is returned from this function will be stored in state
+
+#### Returned
+- `node (react node object)`: The node stored in state.
+- `setRef (react ref)`: The ref to apply to a component.
+
 ### useRelay
 
 An extension of useRequest, this hook with minimal configuration alongside standard [Axios](https://github.com/axios/axios) parameters, will request an API endpoint and store it in easily accessible and manipulated state. As the request progresses, a numeric status value is updated, from 0 for staged, 1 for in-progress, 2 for successful, 3 for error. The default 0 will make an automatic request unless the `paused` option is set to true. While paused the status is -1 so using the provided function `setStatus(0)` could be used to conditionally make a request. This can be coupled with the option `delay: 3000` to do something like timed conditional auto-saves. Or you can trigger requests when a value changes using the `watch` param.
