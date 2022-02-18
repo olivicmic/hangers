@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { usePagination, useRelay, useStateRef } from 'hangers'
 import Request from './components/Request';
-import KeyPress from './components/KeyPress';
+import KeyListen from './components/KeyListen';
 import KeyInput from './components/KeyInput';
 
 const ResponseBody = ({content}) => {return <ul className='body-section'>
@@ -59,7 +59,7 @@ export default function App(props) {
 		</div>
 		<Request />
 		<KeyInput />
-		<KeyPress />
+		<KeyListen />
 		<div className='hook-body'>
 			<div className='body-section'>			
 				<h2>usePagination</h2>

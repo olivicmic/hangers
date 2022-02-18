@@ -4,7 +4,7 @@ export default function useKeyInput({ defaultAll = true, disabled, keySet, keydo
 	const debug = (test, str) => console.log( ...[str, ...( [test] || [] )] );
 	const subObj = (e, keyObj) => {
 		if (typeof keyObj === 'function' && e.type === 'keydown') keyObj(e);
-		else if (!keyObj.block) {
+		else if (!keyObj.disabled) {
 			if (keyObj?.default === false) e.preventDefault();
 			if (keyObj[e.type]) keyObj[e.type](e);
 		}

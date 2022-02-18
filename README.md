@@ -6,7 +6,7 @@ An assortment of React hooks.
 ## Install
 
 ```bash
-npm i hangers -s
+yarn add hangers -s
 ```
 
 ## Hooks
@@ -24,6 +24,67 @@ const transitions = useSpring(value, {
   ...yourSpringParams,
   ...busyConfig // adds onStart and onRest
 });
+
+```
+
+### useKeyInput
+
+Provides a function to used either with onKeyUp or onKeyDown component props. The actions the function performs is assigned via an object where each keycode corresponds with name-value pair. The values can be functions to perform, or the value can be a sub-object which contains the desired function as well and options to conditionally block or to use peventDefault per key.
+
+#### Usage
+
+```jsx
+
+  const keySet = {
+    '37': { // name corresponding with a key code value (left arrow here)
+      disable: false, // if true disables any action on this key
+      default: false, // if false preventDefault() is applied to this key
+      keydown: e => setKey(e.key), // a function to perfom on keydown
+      keyup: e => { e.debug('hello world') } //  ... or keyup
+      /* .debug() is attached to the events, which if used will log the eveny detail and any value you share with it */
+    },
+    '38': e => setKey(e.key), // a function rather than an object will apply to keydown events
+    other: e => { // assign functions to all other keys
+      e.preventDefault(); // all the standard event props are accessible
+    },
+  };
+
+  const keyInput = useKeyInput({ 
+    defaultAll, // if false .preventDefault() will be applied to all keys (default: true)
+    disabled, // disable all actions if true
+    keySet, // the object above
+    keydown, // if true, only keydown events will activate
+    keyup // if true, only keyup events will activate
+  });
+
+  return <input type='text' onKeyDown={keyInput} onKeyUp={keyInput} />; // apply the function to the components
+
+```
+
+#### Parameters
+- `defaultAll (boolean, default true)`: if false preventDefault() will apply to all keys.
+- `disabled (boolean, default false)`: if true all no action will be applied to any event.
+- `keySet (object)`: An object individually defining actions per key code.
+- `keydown (boolean, default: false)`: If true keydown runs solo, with keyup disabled.
+- `keyup (boolean, default: false)`: If true keyup runs solo, with keydown disabled.
+
+#### Returned
+- `keyInput (function)`: Place as the value of keydown and/or keyup. It will know what to do based on the event type.
+
+### useKeyListen
+
+Based on useKeyInput, but rather than provide a function to attach to onKeyUp/onKeyDown props, it instead creates document-level listeners.
+
+It uses the same params as useKeyInput above, just without the provided function.
+
+```jsx
+  useKeyListen({ 
+    defaultAll, // if false .preventDefault() will be applied to all keys (default: true)
+    disabled, // disable all actions if true
+    keySet, // an object defining actions (see useKeyInput above)
+    keydown, // if true, only keydown events will activate
+    keyup // if true, only keyup events will activate
+  });
 
 ```
 

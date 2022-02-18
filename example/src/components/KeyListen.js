@@ -5,7 +5,7 @@ export default function KeyPress({}) {
 	const [key, setKey] = useState('None');
 	const [disabled, setDisabled] = useState(true);
 	const keyTemplate = n => ({
-		block: false, // if true disable custom
+		disabled: false, // if true disable custom
 		default: false, // if false prevent event default
 		keydown: e => e.debug(n),
 		keyup: e => {e.debug(n); setKey(e.key)}
@@ -27,13 +27,13 @@ export default function KeyPress({}) {
 		}
 	};
 
-	useKeyListen({ disabled, keySet, keydown: 'butt' });
+	useKeyListen({ disabled, keySet, keyup: true });
 	
 	return <div className='hook-body'>
 		<div className='body-section'>
 			<h2>useKeyListen</h2>
 			<p>
-				Listens for key inputs based on an object where each keycode is assigned an object key which values can be functions to perform on the key release, or the value can be a sub-object which contains the desired function as well and options to conditionally block or to use peventDefault per key.
+				Based on useKeyInput, but rather than provide a function to attach to onKeyUp/onKeyDown props, it instead creates document-level listeners. 
 			</p>
 		</div>
 		<div className='body-section'>
