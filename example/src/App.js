@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import { usePagination, useRelay, useStateRef } from 'hangers'
 import Request from './components/Request';
+import KeyPress from './components/KeyPress';
+import KeyInput from './components/KeyInput';
 
 const ResponseBody = ({content}) => {return <ul className='body-section'>
 		{ content && content.results ? content.results.map((item, i) => <li key={i}>
@@ -8,6 +10,7 @@ const ResponseBody = ({content}) => {return <ul className='body-section'>
 		</li>) : 'nothing'}
 	</ul>;	
 };
+
 
 export default function App(props) {
 	const [reqPg, setReqPg] = useState(1);
@@ -55,6 +58,8 @@ export default function App(props) {
 			<ResponseBody content={response} status={status}/>
 		</div>
 		<Request />
+		<KeyInput />
+		<KeyPress />
 		<div className='hook-body'>
 			<div className='body-section'>			
 				<h2>usePagination</h2>
