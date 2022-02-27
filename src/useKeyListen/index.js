@@ -9,8 +9,8 @@ export default function useKeyListen({ defaultAll = true, disabled, keySet, keyd
 			if (!keydown || (keydown && keyup)) document.addEventListener('keyup', keyInput);
 
 			return () => {
-				if (!keyup || (keydown && keyup)) document.removeEventListener('keydown', keyInput);
-				if (!keydown || (keydown && keyup)) document.removeEventListener('keyup', keyInput);
+				document.removeEventListener('keydown', keyInput);
+				document.removeEventListener('keyup', keyInput);
 			};
 		}
 	}, [ disabled ]);

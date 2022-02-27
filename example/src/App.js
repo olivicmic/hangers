@@ -3,6 +3,7 @@ import { usePagination, useRelay, useStateRef } from 'hangers'
 import Request from './components/Request';
 import KeyListen from './components/KeyListen';
 import KeyInput from './components/KeyInput';
+import Outside from './components/Outside';
 
 const ResponseBody = ({content}) => {return <ul className='body-section'>
 		{ content && content.results ? content.results.map((item, i) => <li key={i}>
@@ -60,6 +61,7 @@ export default function App(props) {
 		<Request />
 		<KeyInput />
 		<KeyListen />
+		<Outside />
 		<div className='hook-body'>
 			<div className='body-section'>			
 				<h2>usePagination</h2>
