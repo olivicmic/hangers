@@ -5,7 +5,7 @@ export default function Outside({}) {
 	const [ref, setRef] = useStateRef(node => node);
 
 	useOutside(ref, () => console.log("shat"));
-	return <div className='hook-body' ref={ref}>
+	return <div className='hook-body' ref={setRef} key='fucxu'>
 		<div className='body-section'>
 			<h2>useOutside</h2>
 			<p>

@@ -61,7 +61,7 @@ export default function App(props) {
 		<Request />
 		<KeyInput />
 		<KeyListen />
-		<Outside />
+		<Outside key='wut'/>
 		<div className='hook-body'>
 			<div className='body-section'>			
 				<h2>usePagination</h2>
