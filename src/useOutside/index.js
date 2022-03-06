@@ -1,11 +1,12 @@
 import { useEffect } from 'react';
 
-export default function useOutside(ref, todo = () => {}) {
-	const onOutside = e => {
-		if (!ref?.contains(e.target)) todo(e);
+export default function useOutside({disabled, inside = () => {}, outside = () => {}, ref}) {
+	const handleClick = e => {
+		if (ref?.contains(e.target)) inside(e)
+		else outside(e);
 	};
 	useEffect(() => {
-		document.addEventListener('mousedown', onOutside, true); 
-		return () => document.removeEventListener('mousedown', onOutside, true);
-	}, [ onOutside ]);
+		if (!disabled) document.addEventListener('mousedown', handleClick, true); 
+		return () => document.removeEventListener('mousedown', handleClick, true);
+	}, [ disabled, handleClick ]);
 };

@@ -1,6 +1,7 @@
 // based on work by https://vzaidman.com
 import { useCallback, useState } from 'react';
 export default function useStateRef(process = n => n) {
+	//console.log(process);
 	const [node, setNode] = useState(null);
 	const setRef = useCallback(newNode => setNode(process(newNode)), [process]);
 	return [node, setRef];
