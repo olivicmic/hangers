@@ -1,13 +1,13 @@
 import React, { useEffect,  useState } from 'react';
-import { useOutside, useStateRef } from 'hangers';
+import { useInOut, useStateRef } from 'hangers';
 
 export default function Outside({}) {
 	const [inOrOut, setInOrOut] = useState('out');
 	const [disabled, setOnOff] = useState(true);
 	const [ref, setRef] = useStateRef(node => node);
 
-	useOutside({disabled, ref, inside: () => setInOrOut('in'), outside: () => setInOrOut('out')});
-	return <div className='hook-body' ref={setRef} key='fucxu'>
+	useInOut({disabled, ref, onIn: () => setInOrOut('in'), onOut: () => setInOrOut('out')});
+	return <div className='hook-body' ref={setRef} key='outside-block'>
 		<div className='body-section'>
 			<h2>useInOut</h2>
 			<p>

@@ -7,8 +7,7 @@ export default function useThrottle(toDo = () => {}, status, setStatus, watch, d
 		const timer = setTimeout(() => {
 			if (debug && !status) console.log('hangers useThrottle timer');
 			if (!status) {
-				if (debug) console.log('useThrottle switch');
-				setStatus(1);
+				setStatus(1, 'useThrottle component useEffect mounted, status = 0/falsy');
 				toDo();
 			}
 		}, holdDelay ? 0 : delay);
@@ -18,8 +17,7 @@ export default function useThrottle(toDo = () => {}, status, setStatus, watch, d
 	useEffect(() => {
 		if (debug) console.debug('useThrottle watch values', watch, watchStore);
 		if (url && watch && status !== 1) {
-			if (debug) console.debug('useThrottle watch triggered', watch, watchStore);
-			setStatus(0);
+			setStatus(0, 'useThrottle watch values triggered');
 		}
 	},[status, url, watch]);
 

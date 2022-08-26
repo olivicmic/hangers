@@ -27,6 +27,28 @@ const transitions = useSpring(value, {
 
 ```
 
+### useInOut
+
+Runs onIn or onOut functions when clicking inside or an outside a component respectively. The host component is specified via providing a ref. It can also be disabled via a "disabled" boolean. The intention is to recognize clicks without having prior focus.
+
+#### Usage
+
+```jsx
+
+const ref = useRef(null);
+
+useInOut({disabled: false, ref, onIn: () => console.log('Clicked in'), onOut: () => console.log('Clicked out')});
+
+return <div ref={ref}>Hello world</div>
+
+```
+
+#### Parameters
+- `disabled (boolean, default false)`: if true the mouse listener will be disabled and no functions will run.
+- `onIn (function)`: A function to run when you click inside an component.
+- `onOut (function)`: A function to run when you click outside an component.
+
+
 ### useKeyInput
 
 Provides a function to used either with onKeyUp or onKeyDown component props. The actions the function performs is assigned via an object where each keycode corresponds with name-value pair. The values can be functions to perform, or the value can be a sub-object which contains the desired function as well and options to conditionally block or to use peventDefault per key.
