@@ -1,10 +1,9 @@
 import { useState } from 'react';
 
 export default function useBusy({ onRest = () => {}, onStart = () => {} }) {
-	const [busy, setBusy] = useState(0);
-	const [run, setRun] = useState(1);
+	const [busy, setBusy] = useState(false);
 	return [busy, {
-		onStart: () => setBusy(run) && setRun(run + 1) && onStart(),
-		onRest: () => setBusy(0) && onRest()
+		onStart: () => { setBusy(true); onStart(true) },
+		onRest: () => { setBusy(false); onRest(false) }
 	}, setBusy];
 };
