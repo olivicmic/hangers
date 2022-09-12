@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-export default function usePagination({ count = 0, initial = 0, onChange = () => {} }) {
+export default function usePagination({ count = 0, initial = 0, name = '', onChange = () => {} }) {
 	const [active, setActive] = useState(false);
 	const [page, setPage] = useState(initial);
 	const [direction, setDirection] = useState(true);
@@ -8,7 +8,10 @@ export default function usePagination({ count = 0, initial = 0, onChange = () =>
 	const atEnd = (page >= count -1);
 	const goTo = index => {
 		let num = parseInt(index);
-		onChange({ target: { value: num } });
+		onChange({ target: {
+			...( name ? { name} : {}),
+			value: num 
+		}});
 		setActive(true);
 		setDirection(num > page);
 		num > -1 && num < count && setPage(num);
