@@ -1,12 +1,11 @@
-import useBusy from './useBusy';
-import useInOut from './useInOut';
-import useKeyInput from './useKeyInput';
-import useKeyListen from './useKeyListen';
-import usePagination from './usePagination';
-import useRelay from './useRelay';
-import useRequest from './useRequest';
-import useStateRef from './useStateRef';
-import useTimeout from './useTimeout';
-import useYap from './useYap';
+import React from 'react';
+import { createRoot } from 'react-dom/client';
+//import { TextInput } from "./lib";
 
-export { useBusy, useInOut, useKeyInput, useKeyListen, usePagination, useRelay, useRequest, useStateRef, useTimeout, useYap };
+export default function App() {
+  return <div>
+      <h1>Hangers</h1>
+  </div>;
+};
+
+createRoot( document.getElementById('root')).render(<App/>);

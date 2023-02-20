@@ -1,5 +1,5 @@
 # hangers
-An assortment of React hooks.
+An assortment of React hooks. Readme update for v3 pending.
 
 [![NPM](https://img.shields.io/npm/v/hangers.svg)](https://www.npmjs.com/package/hangers) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
