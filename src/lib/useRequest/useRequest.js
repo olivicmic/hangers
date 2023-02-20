@@ -1,6 +1,5 @@
 import { useState } from 'react';
-import { log, uno } from 'lal';
-import api from '../api';
+import { api, log, uno } from 'lal';
 
 const { REACT_APP_API_MAIN_KEY: mainKey, REACT_APP_API_MAIN_KEY_NAME: mainKeyName, REACT_APP_API_MAIN_URL: mainURL} = process.env;
 

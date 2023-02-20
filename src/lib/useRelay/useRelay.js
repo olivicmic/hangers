@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { uno } from 'lal';
-import { useRequest } from 'components/Temp';
-import useThrottle from '../useThrottle';
+import { useRequest, useThrottle } from '..';
 
 export default function useRelay(props) {
 	const { debug, delay, onError = () => {}, onSuccess = () => {}, paused, mono, retry, slowOnError, url, watch, ...rest  } = uno(props);

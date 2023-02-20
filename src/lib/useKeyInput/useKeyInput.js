@@ -1,5 +1,3 @@
-import { useEffect, useState } from 'react';
-
 export default function useKeyInput({ defaultAll = true, disabled, keySet, keydown, keyup }) {
 	const debug = (test, str) => console.log( ...[str, ...( [test] || [] )] );
 	const subObj = (e, keyObj) => {
