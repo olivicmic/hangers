@@ -1,6 +1,8 @@
 import { useState } from 'react';
+import { uno } from 'lal';
 
-export default function useBusy({ disable, onRest = () => {}, onStart = () => {} }) {
+export default function useBusy(props) {
+	const { disable, onRest = () => {}, onStart = () => {} } = uno(props);
 	const [busy, setBusy] = useState(false);
 	return [busy, {
 		onStart: (result, spring, item) => !disable && setBusy(true) && onStart(true, item),
