@@ -1,8 +1,9 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
-import { useRelay } from './lib';
+import { useInput, useRelay } from './lib';
 
 export default function App() {
+	console.log(useInput);
 	const { setStatus, ...rest } = useRelay({
 		baseURL: 'http://localhost:3000',
 		baseState: { a: 'hello', b: 'world', c: '', persist: true },

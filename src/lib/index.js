@@ -1,6 +1,7 @@
 import useBusy from './useBusy';
 import useHover from './useHover';
 import useInOut from './useInOut';
+import useInput from './useInput';
 import useKeyInput from './useKeyInput';
 import useKeyListen from './useKeyListen';
 import usePagination from './usePagination';
@@ -12,6 +13,7 @@ export {
 	useBusy,
 	useHover,
 	useInOut,
+	useInput,
 	useKeyInput,
 	useKeyListen,
 	usePagination,
