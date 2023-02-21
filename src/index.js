@@ -3,8 +3,10 @@ import { createRoot } from 'react-dom/client';
 import { useRelay } from './lib';
 
 export default function App() {
-	const { ...rest } = useRelay({
+	const { setStatus, ...rest } = useRelay({
+		baseURL: 'http://localhost:3000',
 		baseState: { a: 'hello', b: 'world', c: '', persist: true },
+		debug: {location: 'butt'},
 		url: 'v1/resources/test-collection',
 		itemNames: 'characters',
 		keyName: 'key',
@@ -14,6 +16,7 @@ export default function App() {
 	  });
   return <div>
 	  <h1>Hangers</h1>
+	  <button onClick={e => setStatus(0)}>cleeq</button>
   </div>;
 };
 

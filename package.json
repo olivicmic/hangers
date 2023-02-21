@@ -6,7 +6,7 @@
   "license": "MIT",
   "main": "dist/index.js",
   "module": "dist/index.js",
-  "repository": "olivicmic/hangers",
+  "repository": "https://github.com/olivicmic/hangers",
   "files": [
     "dist"
   ],
@@ -42,6 +42,7 @@
     ]
   },
   "dependencies": {
-    "lal": "^6.0.4"
+    "axios": "^1.3.3",
+    "lal": "^7.0.1"
   }
 }

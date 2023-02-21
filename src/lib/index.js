@@ -7,7 +7,6 @@ import usePagination from './usePagination';
 import useRelay from './useRelay';
 import useRequest from './useRequest';
 import useStateRef from './useStateRef';
-import useThrottle from './useThrottle';
 import useTimeout from './useTimeout';
 export {
 	useBusy,
@@ -19,6 +18,5 @@ export {
 	useRelay,
 	useRequest,
 	useStateRef,
-	useThrottle,
 	useTimeout
 };

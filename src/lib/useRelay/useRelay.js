@@ -1,13 +1,13 @@
-import { useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { uno } from 'lal';
-import { useRequest, useThrottle } from '..';
+import useRequest from '../useRequest';
 
 export default function useRelay(props) {
 	const { debug, delay, onError = () => {}, onSuccess = () => {}, paused, mono, retry, slowOnError, url, watch, ...rest  } = uno(props);
 	const [status, setStatusState] = useState(paused ? -1 : 0);
-	const setStatus = ( input, instance = '' ) => { 
+	const setStatus = useCallback(( input, instance = '' ) => { 
 		if (debug) console.debug(`useRelay setStatus at ${debug.location || ''}`,{ instance, input }); 
-		setStatusState(input); }
+		setStatusState(input); },[debug]);
 	const execute = (res, step, onFinish) => {
 		onFinish(res);
 		setStatus(step, 'useRelay internal execute'); // 2 || 3
@@ -19,7 +19,12 @@ export default function useRelay(props) {
 		url: mono || url,
 		...rest
 	});
-	useThrottle(request, status, setStatus, watch, delay, debug, slowOnError && !error, mono || url);
+	useEffect(() => {
+		if (!status) {
+			setStatus(1, 'useRelay useEffect status = 0/falsy');
+			request();
+		}
+	},[request, setStatus, status]);
 
 	return {
 		error,
