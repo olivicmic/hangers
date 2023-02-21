@@ -5823,10 +5823,10 @@ klona@^2.0.4, klona@^2.0.5:
   resolved "https://registry.yarnpkg.com/klona/-/klona-2.0.6.tgz#85bffbf819c03b2f53270412420a4555ef882e22"
   integrity sha512-dhG34DXATL5hSxJbIexCft8FChFXtmskoZYnoPWjXQuebWYCNkVeV3KkGegCK9CP1oswI/vQibS2GY7Em/sJJA==
 
-lal@^7.0.1:
-  version "7.0.1"
-  resolved "https://registry.yarnpkg.com/lal/-/lal-7.0.1.tgz#2304b30d098a35a9e644e424aa3f6b1bb90d424b"
-  integrity sha512-Tfi7I9irStMpHGZWqd4VnT3COrR6yfxJ7k24j6GQl8K9I6rsQw7owadHeddkcT051yOC7lvSzOtf8fLL/sgoKQ==
+lal@^7.0.2:
+  version "7.0.2"
+  resolved "https://registry.yarnpkg.com/lal/-/lal-7.0.2.tgz#51193e3c24fc1c1b9fe088f32474b2538fbcd556"
+  integrity sha512-7LVTx2SuivVEnGDtnyf46h8hGb9Tc2GD4HzkZGb1KOJ6Wd7mr4n6mW/Ug2gFZ4GZk6DFBKxI5YQnyLTWyPhkPQ==
 
 language-subtag-registry@~0.3.2:
   version "0.3.22"
