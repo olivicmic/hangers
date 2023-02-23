@@ -1,9 +1,11 @@
 import { useEffect } from 'react';
 
-export default function useInOut({ boundary = '', disabled, onIn = () => {}, onOut = () => {} }) {
+export default function useInOut({ boundary = '', debug, disabled, onIn = () => {}, onOut = () => {} }) {
 	useEffect(() => {
 		const handleClick = ({ target }) => {
-			if (target?.closest('#' + boundary)) onIn({ target });
+			let closest = target?.closest('#' + boundary);
+			if (debug) console.log('useInOut debug', debug, { boundary, closest });
+			if (closest) onIn({ target });
 			else onOut({ target });
 		};
 		if (!disabled) document.addEventListener('mousedown', handleClick, true);
