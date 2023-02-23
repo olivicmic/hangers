@@ -4,7 +4,7 @@ export default function useInOut({ boundary = '', debug, disabled, onIn = () => 
 	useEffect(() => {
 		const handleClick = ({ target }) => {
 			let closest = target?.closest('#' + boundary);
-			if (debug) console.log('useInOut debug', debug, { boundary, closest });
+			if (debug) console.log('useInOut debug', debug, target, { boundary, closest });
 			if (closest) onIn({ target });
 			else onOut({ target });
 		};

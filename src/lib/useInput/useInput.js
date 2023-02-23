@@ -11,7 +11,6 @@ export default function useInput({ close = b, click = b, during = b, debug, host
 				if (debug) console.log({location: 'stuff useInput onBlur', targetID, hostid});
 				if (!hostid) setFocus(false);
 				else if (targetID !== hostid) {
-					console.log('butt',hostid);
 					setFocus(false); close(targetID); 
 			}},
 			onClick: e => {
