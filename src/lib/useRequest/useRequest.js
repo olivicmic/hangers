@@ -4,8 +4,10 @@ import { api } from '../resources';
 
 const { REACT_APP_API_MAIN_KEY: mainKey, REACT_APP_API_MAIN_KEY_NAME: mainKeyName, REACT_APP_API_MAIN_URL: mainURL} = process.env;
 
+const n = o => o;
+
 export default function useRequest(props) {
-	const { apiKey, baseURL, debug, baseState, key, keyName, onError = () => {}, onSuccess = () => {}, params, mono, url, ...rest } = uno(props);
+	const { apiKey, baseURL, debug, baseState, formatData = n, key, keyName, onError = n, onSuccess = n, params, mono, url, ...rest } = uno(props);
 	const [error, errorSet] = useState(null);
 	const [httpCode, httpCodeSet] = useState();
 	const [response, responseSet] = useState(baseState);
@@ -16,7 +18,8 @@ export default function useRequest(props) {
 	};
 	const resArr = ['error','success'];
 	const execute = (res = {}, updateState, onFinish, clear, pass) => {
-		let resObj = pass ? { ...baseState, ...res.data } : res.data || {};
+		const data = formatData(res.data || {});
+		let resObj = pass ? { ...baseState, ...data } : data;
 		if (debug) console.debug(`hangers useRequest execute at ${debug.location || ''}`, resArr[pass], resObj);
 		if (res.status) httpCodeSet(res.status);
 		updateState(resObj);

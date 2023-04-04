@@ -11,5 +11,5 @@ export default function useInOut({ boundary = '', debug, disabled, onIn = () => 
 		if (!disabled) document.addEventListener('mousedown', handleClick, true);
 		else document.removeEventListener('mousedown', handleClick, true);
 		return () => document.removeEventListener('mousedown', handleClick, true);
-	}, [ boundary, disabled, onIn, onOut ]);
+	}, [ boundary, debug, disabled, onIn, onOut ]);
 };
